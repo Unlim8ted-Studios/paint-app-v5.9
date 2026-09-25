@@ -1,0 +1,47 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python environments
+.venv/
+venv/
+env/
+ENV/
+
+# PyInstaller
+build/
+dist/
+*.manifest
+
+# PyInstaller temporary files
+*.pyz
+*.toc
+
+# Logs
+*.log
+
+# Test / coverage files
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
+
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Keep the PyInstaller spec file
+!paint.spec

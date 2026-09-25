@@ -1,4 +1,6 @@
 from os import write
+import os
+import sys
 from tkinter import W
 import pygame as pig
 from pygame import mouse
@@ -11,21 +13,40 @@ from pygame.gfxdraw import filled_circle as circle
 #p_t_1 = "C:\ "
 #os.listdir()
 
-info = open("info.TXT","r")
-p_a_p = info.readline(64)
-s_i_p = info.readline(2)
-d_p = info.readline(3)
+def resource_path(relative_path):
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), relative_path)
+
+
+def save_path(filename):
+    folder = os.path.join(os.path.expanduser("~"), "Documents", "Paint", "saves")
+    os.makedirs(folder, exist_ok=True)
+    return os.path.join(folder, filename)
+
+
+def desktop_path(filename=None):
+    folder = os.path.join(os.path.expanduser("~"), "Desktop")
+    if filename is None:
+        return folder
+    return os.path.join(folder, filename)
+
+
+#info = open(resource_path("info.TXT"), "r")
+#p_a_p = info.readline(64)
+#s_i_p = info.readline(2)
+#d_p = info.readline(3)
 
 pig.init()
   
-print("r = red,o = orange,y = yellow,g = green,b = blue,p = purple,p + i = pink,t + u = turquoise,s + b = sky blue,l = lime,z = screen black,x = screen white,m = magenta,d + b = dark blue,s + c = skin color,e = black,w + h = white,s + f1 = save slot1,s + f2 = save") 
+print("r = red,o = orange,y = yellow,g = green,b = blue,p = purple,p + i = pink,t + u = turquoise,s + b = sky blue,l = lime,z = screen black,x = screen white,m = magenta,d + b = dark blue,s + c = tan,e = black,w + h = white,s + f1 = save slot1,s + f2 = save") 
 print('slot2,s + f3 = save slot3,s + f4 = save slot4,s + f5 = save slot5,s + f6 = save slot6,s + f7 = save slot7,s + f8 = save slot8,s + f9 = save slot9,s + end = save slot0, l + 0 = load image 0,hold equale key = rainbow')
-print('c + i = circle mode, s + q = square mode, c + h = christmas mode, n + c = not christmas mode, while hold equale key rainbow mode = True, if speed 9 pattern apears,shift + 8 = pattern appears while moving diagnale')
+print('c + i = circle mode, sc + q = square mode, c + h = christmas mode, n + c = not christmas mode, while hold equale key rainbow mode = True, if speed 9 pattern apears,shift + 8 = pattern appears while moving diagnale')
 print('hold c+r = CRAZY_MODE')   
 
 
   
-icon = pig.image.load(p_a_p + 'paint app gus v5\Icon.ico')
+icon = pig.image.load(resource_path("data/icon.ico"))
 win_size = (1920,1025)
 win = pig.display.set_mode(win_size,RESIZABLE)
 pig.display.set_caption("paint")
@@ -59,7 +80,7 @@ for event in pig.event.get() :
     
        
 run = True
-print('hi Gus')  
+print('hi ')  
 # infinite loop 
 circle_mode = False
 crazy = False
@@ -103,7 +124,7 @@ while run:
         b += ma
    
     
-    path = f'{s_i_p}'
+    #path = f'{s_i_p}'
     pig.display.update()        
     
     white = (255,255,255)
@@ -119,7 +140,7 @@ while run:
     sky_blue = (0,191,255)
     magenta = (139,0,139)
     dark_blue = (0,0,139)
-    skin_color = (250,231,218)
+    tan_color = (250,231,218)
     color1 = (255,255,255)
     lime = (0,255,0)
 
@@ -255,95 +276,95 @@ while run:
     
     if keys[pig.K_s] and keys[pig.K_F1]:
         num += 1
-        pig.image.save(win, path+'1.png')
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/{num}.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('1.png'))
+        pig.image.save(win, save_path("{num}.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         subprocess.CREATE_NEW_CONSOLE
 
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_1]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/1.png'),(0,0))
+        win.blit(pig.image.load(save_path("1.png")),(0,0))
     
     if keys[pig.K_s] and keys[pig.K_F2]:
         color1 = color
-        pig.image.save(win, path +"1.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/2.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('1.png'))
+        pig.image.save(win, save_path("2.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_2]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/2.png'),(0,0))
+        win.blit(pig.image.load(save_path("2.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_F3]:
         color1 = color
-        pig.image.save(win, path+"2.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/3.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('2.png'))
+        pig.image.save(win, save_path("3.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_3]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/3.png'),(0,0))
+        win.blit(pig.image.load(save_path("3.png")),(0,0))
 
                 
     if keys[pig.K_s] and keys[pig.K_F4]:
         color1 = color
-        pig.image.save(win, path+"3.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/4.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('3.png'))
+        pig.image.save(win, save_path("4.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_4]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/4.png'),(0,0))
+        win.blit(pig.image.load(save_path("4.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_F5]:
         color1 = color
-        pig.image.save(win, path+"4.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/5.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('4.png'))
+        pig.image.save(win, save_path("5.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_5]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/5.png'),(0,0))
+        win.blit(pig.image.load(save_path("5.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_F6]:
         color1 = color
-        pig.image.save(win, path+"5.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/6.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('5.png'))
+        pig.image.save(win, save_path("6.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_6]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/6.png'),(0,0))
+        win.blit(pig.image.load(save_path("6.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_F7]:
         color1 = color
-        pig.image.save(win, path+"6.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/7.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('6.png'))
+        pig.image.save(win, save_path("7.png"))
+        subprocess.Popen(['explorer', desktop_path()])
         
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_7]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/7.png'),(0,0))
+        win.blit(pig.image.load(save_path("7.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_F8]:
         color1 = color
-        pig.image.save(win, path+"7.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/8.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('7.png'))
+        pig.image.save(win, save_path("8.png"))
+        subprocess.Popen(['explorer', desktop_path()])
     
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_8]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/8.png'),(0,0))
+        win.blit(pig.image.load(save_path("8.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_F9]:
         color1 = color
-        pig.image.save(win, path+"8.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/9.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('8.png'))
+        pig.image.save(win, save_path("9.png"))
+        subprocess.Popen(['explorer', desktop_path()])
     
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_9]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/9.png'),(0,0))
+        win.blit(pig.image.load(save_path("9.png")),(0,0))
 
     if keys[pig.K_s] and keys[pig.K_END]:
         color1 = color
-        pig.image.save(win, path+"9.png")
-        pig.image.save(win, (p_a_p + r'paint app gus v5\data/saves/0.png'))
-        subprocess.Popen('explorer "C:/desktop"')
+        pig.image.save(win, desktop_path('9.png'))
+        pig.image.save(win, save_path("0.png"))
+        subprocess.Popen(['explorer', desktop_path()])
     
     if keys[pig.K_s] and keys[pig.K_o] and keys[pig.K_0]:
-        win.blit(pig.image.load(p_a_p + r'paint app gus v5\data/saves/0.png'),(0,0))
+        win.blit(pig.image.load(save_path("0.png")),(0,0))
 
     
     if keys[pig.K_z]:
@@ -370,7 +391,7 @@ while run:
 
     if keys[pig.K_s] and keys[pig.K_c]:
         rainbow_mode = False
-        color = skin_color
+        color = tan_color
 
     if keys[pig.K_l]:
         rainbow_mode = False
@@ -428,7 +449,7 @@ while run:
             magenta,
             purple,
             pink,
-            skin_color,
+            tan_color,
             white     
         ]
         crcoli = crcoli % len(cr_co)
@@ -467,7 +488,7 @@ while run:
             crcoli += 2
             crcoli = crcoli % len(cr_co)
             
-        color = cr_co
+        color = cray_color
         circle(win, x + 30, y + 9, width_hight, cray_color)
         circle(win, x - 30, y - 9, width_hight1, cray_color)
         circle(win, x + 30, y - 30, width_hight, cray_color)
