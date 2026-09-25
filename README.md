@@ -1,5 +1,5 @@
 # Paint App v5.9
-
+> This is one of my earliest programming projects and is preserved here mostly for reference or for anyone who wants to use it.
 A fun, Python-made painting app.
 
 ---
