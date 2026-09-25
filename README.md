@@ -19,12 +19,6 @@ If you encounter any bugs or have feature requests, please create an issue in th
 
 ---
 
-## License
-
-You are free to use and modify the content of this repository for personal or educational purposes. However, **you are not allowed to distribute, sell, or use this project for commercial purposes without explicit written permission** from Unlim8ted Studio Productions.
-
----
-
 ## Contact
 
 For questions or support, feel free to reach out to:
